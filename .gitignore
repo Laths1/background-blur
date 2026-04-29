@@ -1,0 +1,35 @@
+# Video formats
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.wmv
+*.flv
+*.webm
+
+# Image formats
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.webp
+*.svg
+
+# Zipped / Compressed folders
+*.zip
+*.tar
+*.tar.gz
+*.gz
+*.7z
+*.rar
+
+# Machine Learning / Data specific (optional but recommended)
+*.h5
+*.pt
+*.pth
+*.onnx
+*.
+
+*.txt
