@@ -164,7 +164,7 @@ def blurFrame(image_path, model=masking.Mask.modnet):
 
 def blurVideo(video_path_str, file_name='output.mp4', back_mask='output_back_mask.mp4', fore_mask='output_fore_mask.mp4'):
     # 1. Drive & Folder Setup
-    # Defining the base drive path
+    
     base_drive = '/content/drive/MyDrive/background_blur'
 
     # Create the full paths for Drive
@@ -172,7 +172,6 @@ def blurVideo(video_path_str, file_name='output.mp4', back_mask='output_back_mas
     drive_back_path = os.path.join(base_drive, 'back_mask', os.path.basename(back_mask))
     drive_fore_path = os.path.join(base_drive, 'fore_mask', os.path.basename(fore_mask))
 
-    # Ensure these subdirectories exist on your Drive
     # os.makedirs(os.path.dirname(drive_final_path), exist_ok=True)
     # os.makedirs(os.path.dirname(drive_back_path), exist_ok=True)
     # os.makedirs(os.path.dirname(drive_fore_path), exist_ok=True)
@@ -182,14 +181,12 @@ def blurVideo(video_path_str, file_name='output.mp4', back_mask='output_back_mas
         print(f"Error: Could not open {video_path_str}")
         return
 
-    # 2. Metadata & Timing
     fps = vid_path.get(cv.CAP_PROP_FPS) or 30.0
     width = int(vid_path.get(cv.CAP_PROP_FRAME_WIDTH))
     height = int(vid_path.get(cv.CAP_PROP_FRAME_HEIGHT))
     total_frames = int(vid_path.get(cv.CAP_PROP_FRAME_COUNT))
     fourcc = cv.VideoWriter_fourcc(*'mp4v')
 
-    # IMPORTANT: Writers now point to drive_path variables
     out_final = cv.VideoWriter(drive_final_path, fourcc, fps, (width, height))
     out_back_mask = cv.VideoWriter(drive_back_path, fourcc, fps, (width, height))
     out_fore_mask = cv.VideoWriter(drive_fore_path, fourcc, fps, (width, height))
@@ -218,7 +215,6 @@ def blurVideo(video_path_str, file_name='output.mp4', back_mask='output_back_mas
             results.sort(key=lambda x: x[0])
 
             for _, processed, b_mask, f_mask in results:
-                # Optional: Ensure frame size matches writer expectations
                 if processed.shape[1] != width or processed.shape[0] != height:
                     processed = cv.resize(processed, (width, height))
 
